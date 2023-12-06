@@ -5,7 +5,7 @@
 
 const fs = require('fs');
 // split the puzzle input by newline characters (\n)
-// this creates the grid (2D array)
+// this creates the grid (both 1D and 2D arrays work with coordinates)
 const data = fs.readFileSync('input.txt', 'utf8').split('\n');
 
 function dayThree() {
@@ -59,7 +59,7 @@ function dayThree() {
             }
         }
     }
-    return total;
+    return data;
 }
 
 console.log(dayThree());
