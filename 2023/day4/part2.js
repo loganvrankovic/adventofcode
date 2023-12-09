@@ -67,5 +67,9 @@ console.log(scratchcards)
             - caclulate matches in the current subsequent card (card + c) up to the number of matches
             - recursively calls checkCards on the subsequent card to check for more matches and cards won
             - accumulates all the cards into totalCards along the way 
-        - the base case occurs implicitly within the for loop
+        - the base case occurs implicitly within the for loop:
+            - the recursive calls continue until there are no more matches left on the current chain of cards.
+            - then matches becomes 0 or less, the loop in checkCards stops iterating because c <= matches condition fails.
+            - The function stops making recursive calls and simply returns the accumulated count of 
+            - additional scratch cards (totalCards) won due to matches on the cards in this chain.              
 */
