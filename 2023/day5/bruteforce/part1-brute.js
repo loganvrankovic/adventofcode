@@ -1,4 +1,18 @@
-const { seeds, toSoil, toFertilizer, toWater, toLight, toTemp, toHumidity, toLocation } = require('./part1-mapping.js');
+/* 
+- This will work for the example, but NOT for the input! 
+- You can try running it, but it will just overflow. 
+- A more elegant implementation of this strategy might eventually give you an answer,
+but overall it's important to do this puzzle in a smarter way-- i.e. don't store
+literally every single number in each range in the array. When the range is in the 
+tens of millions, it becomes evident that this strategy is practically impossible.
+(it's wrong!)
+- However, the logic is mostly the same as my final solution so I'm including it 
+anyway as an example of what a bruteforce solution looks like. 
+*/
+
+const { seeds, toSoil, toFertilizer,
+toWater, toLight, toTemp,
+toHumidity, toLocation } = require('./part1-mapping.js');
 
 const util = require('util');
 util.inspect.defaultOptions.maxArrayLength = null;
@@ -8,10 +22,10 @@ function findRanges(map) {
     let srcRanges = [];
 
     for (let i = 0; i < src.length; i++) {
-        let range = BigInt(src[i][1]);
+        let range = src[i][1];
         let arr = [];
-        for (let j = 0n; j < range; j++) {
-            arr.push([BigInt(src[i][0]) + j]);
+        for (let j = 0; j < range; j++) {
+            arr.push([parseInt(src[i]) + j]);
         }
         srcRanges.push(arr);
         arr = [];
@@ -21,28 +35,28 @@ function findRanges(map) {
     let destRanges = [];
 
     for (let i = 0; i < dest.length; i++) {
-        let range = BigInt(dest[i][1]);
+        let range = dest[i][1];
         let arr = [];
-        for (let j = 0n; j < range; j++) {
-            arr.push([BigInt(dest[i][0]) + j]);
+        for (let j = 0; j < range; j++) {
+            arr.push([parseInt(dest[i]) + j]);
         }
         destRanges.push(arr);
         arr = [];
     }
 
-    return [srcRanges, destRanges];
+    return [srcRanges, destRanges]
 }
 
 function findLocation(src, map) {
     const ranges = findRanges(map);
     const srcRanges = ranges[0].map(i => i.flat());
     const destRanges = ranges[1].map(i => i.flat());
-    let location = 0n;
+    let location = 0;
 
     for (let i = 0; i < srcRanges.length; i++) {
         if (srcRanges[i].includes(src)) {
-            let distance = src - BigInt(srcRanges[i][0]);
-            location = BigInt(destRanges[i][0]) + distance;
+            let distance = src - parseInt(srcRanges[i][0]);
+            location = parseInt(destRanges[i][0]) + distance;
             break;
         } else {
             location = src;
@@ -53,7 +67,7 @@ function findLocation(src, map) {
 }
 
 function farmSearch(src) {
-    const soil = findLocation(BigInt(src), toSoil);
+    const soil = findLocation(src, toSoil);
     const fertilizer = findLocation(soil, toFertilizer);
     const water = findLocation(fertilizer, toWater);
     const light = findLocation(water, toLight);
@@ -65,22 +79,16 @@ function farmSearch(src) {
 }
 
 function dayFive(arr) {
-    const seedArr = arr.map(i => BigInt(i));
+    const seedArr = arr.map(i => parseInt(i));
     let seedLocations = [];
 
     seedArr.map(i => {
         seedLocations.push(farmSearch(i));
-        console.log(`${i} function finished!`)
-    });
+    })
 
-    let optimalLocation = seedLocations[0];
-    for (let i = 1; i < seedLocations.length; i++) {
-        if (seedLocations[i] < optimalLocation) {
-            optimalLocation = seedLocations[i];
-        }
-    }
+    const optimalLocation = Math.min(...seedLocations)
 
     return optimalLocation;
 }
 
-console.log(util.inspect(dayFive(seeds).toString())); 
+console.log(util.inspect(dayFive(seeds)))
