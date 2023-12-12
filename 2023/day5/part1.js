@@ -1,7 +1,10 @@
 const { seeds, toSoil, toFertilizer, toWater, toLight, toTemp, toHumidity, toLocation } = require('./part1-mapping.js');
 
-const util = require('util');
-util.inspect.defaultOptions.maxArrayLength = null;
+/* 
+... The gardener and his team want to get started as soon as possible, so they'd like to know the closest location that needs a seed. 
+Using these maps, find the lowest location number that corresponds to any of the initial seeds. To do this, you'll need to convert each 
+seed number through other categories until you can find its corresponding location number ...
+*/
 
 function findLocation(src, map) {
     const srcRanges = map[0].map(i => i.map(i => parseInt(i)));
@@ -9,7 +12,7 @@ function findLocation(src, map) {
     let location = 0;
 
     for (let i = 0; i < srcRanges.length; i++) {
-        // use an interval here instead of storing the entire range in memory 
+        // use a range here instead of storing the entire range in memory 
         if (src >= srcRanges[i][0] && src <= (srcRanges[i][0] + (srcRanges[i][1] - 1))) {
             let distance = src - srcRanges[i][0];
             location = destRanges[i][0] + distance;
@@ -47,4 +50,4 @@ function dayFive(arr) {
     return optimalLocation;
 }
 
-console.log(util.inspect(dayFive(seeds))); 
+console.log(dayFive(seeds)); 

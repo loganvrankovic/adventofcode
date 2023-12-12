@@ -41,7 +41,6 @@ const soilValues = data.slice(2)
 const toSoil = processValues(soilValues);
 
 console.log("-----------------toSoil----------------------------");
-// console.log(util.inspect(soilValues));
 console.log(util.inspect(toSoil));
 console.log("---------------------------------------------------");
 
@@ -54,7 +53,6 @@ const fertValues = fertilizerData.slice(1, fertEndIndex).map(i => i.split(' '));
 const toFertilizer = processValues(fertValues);
 
 console.log("-----------------toFertilizer----------------------");
-// console.log(util.inspect(fertValues));
 console.log(util.inspect(toFertilizer));
 console.log("---------------------------------------------------");
 
@@ -67,7 +65,6 @@ const waterValues = waterData.slice(1, waterEndIndex).map(i => i.split(' '));
 const toWater = processValues(waterValues);
 
 console.log("-----------------toWater---------------------------");
-// console.log(util.inspect(waterValues));
 console.log(util.inspect(toWater));
 console.log("---------------------------------------------------");
 
@@ -80,7 +77,6 @@ const lightValues = lightData.slice(1, lightEndIndex).map(i => i.split(' '));
 const toLight = processValues(lightValues);
 
 console.log("-----------------toLight---------------------------");
-// console.log(util.inspect(lightValues));
 console.log(util.inspect(toLight));
 console.log("---------------------------------------------------");
 
@@ -93,7 +89,6 @@ const tempValues = tempData.slice(1, tempEndIndex).map(i => i.split(' '));
 const toTemp = processValues(tempValues);
 
 console.log("-----------------toTemp----------------------------");
-// console.log(util.inspect(tempValues));
 console.log(util.inspect(toTemp));
 console.log("---------------------------------------------------");
 
@@ -106,7 +101,6 @@ const humValues = humData.slice(1, humEndIndex).map(i => i.split(' '));
 const toHumidity = processValues(humValues);
 
 console.log("-----------------toHumidity------------------------");
-// console.log(util.inspect(humValues));
 console.log(util.inspect(toHumidity));
 console.log("---------------------------------------------------");
 
@@ -118,7 +112,6 @@ const locValues = locData.slice(1).map(i => i.split(' ').filter(Boolean));
 const toLocation = processValues(locValues);
 
 console.log("-----------------toLocation------------------------");
-// console.log(util.inspect(locValues));
 console.log(util.inspect(toLocation));
 console.log("---------------------------------------------------");
 
@@ -132,5 +125,3 @@ module.exports = {
 	toHumidity, 
 	toLocation
 }
-
-// console.log(util.inspect(seeds));
