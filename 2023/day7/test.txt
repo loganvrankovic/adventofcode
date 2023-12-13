@@ -1,0 +1,25 @@
+2345A 1
+Q2KJJ 13
+Q2Q2Q 19
+T3T3J 17
+T3Q33 11
+2345J 3
+J345A 2
+32T3K 5
+T55J5 29
+KK677 7
+KTJJT 34
+QQQJA 31
+JJJJJ 37
+JAAAA 43
+AAAAJ 59
+AAAAA 61
+2AAAA 23
+2JJJJ 53
+JJJJ2 41
+
+// NOTE: Delete this note to use the above as example input.
+This was written by u/LxsterGames, who singlehandedly saved 
+a gorillion hours for anyone lucky enough to have found 
+his custom tests for this puzzle instead of relying on the 
+almost useless official example input. 
