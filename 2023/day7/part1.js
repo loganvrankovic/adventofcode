@@ -152,4 +152,4 @@ function totalWinnings(arr) {
 
     return total;
 }
-console.log(totalWinnings(sortCards(findCardStrength(data))))
+console.log("Total Winnings: " + totalWinnings(sortCards(findCardStrength(data))))
