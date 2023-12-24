@@ -4,20 +4,18 @@ You had the camel follow the instructions, but you've barely left your starting 
 It's going to take significantly more steps to escape! ...
 */
 
-const util = require('util');
 const fs = require('fs');
 const data = fs.readFileSync('input.txt', 'utf-8').split(/\r?\n/);
 
 // instructions array
 const inst = data.slice(0, 1).join('').split('');
 
-// array of maps 
+// array of the maps 
 const map = data.slice(2)
                    .map(item => item.split("="))
                    .map(item => item.map(i => i.trim()))
                    .map(item => item.map(i => i.replace(/[)(]/g, '')))
                    .map(item => [item[0], item[1].split(', ')]);
-console.log(util.inspect(map))
 
 // array of starting nodes with their indices 
 let nodes = [];
@@ -35,12 +33,11 @@ for (let i = 0; i < startNodes.length; i++) {
         }
     }
 }
-console.log(util.inspect(nodes))
 
 // ---------------------------------------------------------------------------
 let lcmNumbers = [];
 
-function dayEight() {
+function findLCMNumbers() {
     let exit = false;
     let c = 0;
     while (!exit) {
@@ -79,10 +76,6 @@ function dayEight() {
             }
         }
     }
-
     return lcmNumbers;
 }
-// toss these numbers into an LCM calculator:
-console.log(util.inspect(dayEight(), { maxArrayLength: null, depth: null }));
-
-// TODO: LCM solver
+console.log("the LCM numbers are: " + findLCMNumbers()) // You can toss these numbers into an LCM solver to get the solution
