@@ -80,24 +80,9 @@ function findLCMNumbers() {
 }
 const lcmArr = findLCMNumbers(); // an array of the lengths of each starting node's first trip from A-Z 
 
-function gcd(a, b) {
-    if (b == 0) {
-        return a;
-    } else {
-        return gcd(b, a % b);
-    }
+const findLCM = (arr) => {
+    const gcd = (a, b) => (b ? gcd(b, a % b) : a);
+    return arr.reduce((a, b) => (a * b) / gcd(a, b));
 }
 
-function findLCM(arr, n) {
-    let ans = arr[0];
-
-    for (let i = 1; i < n; i++) {
-        ans = (((arr[i] * ans)) / 
-                (gcd(arr[i], ans))); 
-    }
-
-    return ans;
-}
-
-let n = lcmArr.length;
-console.log("the result is: " + findLCM(lcmArr, n)); 
+console.log("the result is: " + findLCM(lcmArr)); 
