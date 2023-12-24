@@ -78,4 +78,26 @@ function findLCMNumbers() {
     }
     return lcmNumbers;
 }
-console.log("the LCM numbers are: " + findLCMNumbers()) // You can toss these numbers into an LCM solver to get the solution
+const lcmArr = findLCMNumbers(); // an array of the lengths of each starting node's first trip from A-Z 
+
+function gcd(a, b) {
+    if (b == 0) {
+        return a;
+    } else {
+        return gcd(b, a % b);
+    }
+}
+
+function findLCM(arr, n) {
+    let ans = arr[0];
+
+    for (let i = 1; i < n; i++) {
+        ans = (((arr[i] * ans)) / 
+                (gcd(arr[i], ans))); 
+    }
+
+    return ans;
+}
+
+let n = lcmArr.length;
+console.log("the result is: " + findLCM(lcmArr, n)); 
